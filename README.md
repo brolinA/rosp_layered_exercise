@@ -17,7 +17,7 @@ After winning the chess game with college it was time for me to conquer the turt
 # Introduction
 The package is named `rosp_layered_exercise` to comply with company's naming policy. The directory structure is as follows
 
-```zsh
+```bash
 rosp_layered_exercise/
 ├── assets
 │   ├── result.gif
@@ -26,12 +26,12 @@ rosp_layered_exercise/
 │   ├── html
 │   │   ├── ...
 │   │   ├── ...
-│   │   ├── index.html
+│   │   ├── index.html #main page of doxygen document
 │   │   ├── ...
 │   └── manifest.yaml
 ├── CMakeLists.txt
 ├── config
-│   └── turtlesim_control_params.yaml //file to store goal points
+│   └── turtlesim_control_params.yaml #file to store goal points
 ├── include
 │   └── rosp_layered_exercise
 │       └── turtlebotGoalPublisher.hpp
@@ -72,7 +72,7 @@ If you have installed ROS2 properly and source the installation then you can use
 You can clone the project using the following command
 
 ```bash
-git clone
+git clone https://github.com/brolinA/rosp_layered_exercise.git
 ```
 
 Then, move the package to the ROS2 workspace you have and build it
@@ -112,10 +112,15 @@ layered_exercise_node:
 - If you set `no_of_goal: 15` but define only `goal1` to `goal10`, the missing 5 goals will be ignored. This also means, if you define `goal1` to `goal10` but set `no_of_goal: 5`, then only the first 5 goals will be reached.
 
 ### 2.4 Running the code
-Once the goal points are set you can run the code using the launch file. I have migrated the launch file from ROS1 to ROS2 in the XML format because it did not require much flexibility in this case. The launch file will first launch a turtlesim node, then kill the turtle and spawn a new once at a predefined location in the launch file. Then start the `rosp_layered_exercise` node which will move the robot to the locations defined in the *yaml* file.
+Once the goal points are set you can run the code using the launch file. You can find both the python-based and XML based launch file. The launch file will first launch a turtlesim node, then kill the turtle and spawn a new once at a predefined location in the launch file. Then start the `rosp_layered_exercise` node which will move the robot to the locations defined in the *yaml* file.
 
 ```bash
+#XML launch file
 ros2 launch rosp_layered_exercise turtle.launch
+```
+```bash
+#Python launch file
+ros2 launch rosp_layered_exercise turtle.launch.py
 ```
 
 You will notice that the print messages are less frequent to avoid information overload in the terminal. I have used `RCLCPP_INFO_THROTTLE` to achieve this.
@@ -125,7 +130,10 @@ Once the code runs successfully, you will see the turtle moving to the defined g
 ![result_image](assets/result.gif)
 
 ## 3. Documentation.
-The code is documented using `doxygen` for ease of understanding. You can open the [index.html](doc/html/index.html) file in a browser of your choice to view the documentation. This will give you better understanding of different functions and variables in the code.
+The code is documented using `doxygen` for ease of understanding. You can open the [index.html](doc/html/index.html) file in a browser of your choice to view the documentation. This will give you better understanding of different functions and variables in the code. 
+
+**Note:** 
+I have used `rosdoc_lite` to generate the documentation. `rosdoc2` is the officially supported package for ROS2. But since I have working projects in ROS1 that uses `rosdoc_lite` I wasn't able to use `rosdoc2` to generate the document.
 
 ### 4. TODO
 1. Defining `goal*` in the yaml file is not a robust way to do it because if you make a spelling mistake in the word `goal` then it will not be read into the code. Instead, we can use avoid it by removing the identifier word `goal*` and define the goals as a `vector<vector<>>` and use the [YAML-CPP](https://github.com/jbeder/yaml-cpp) library to parse the `yaml` file directly. I have used this in ROS1 and it will take some time to verify if it works properly in ROS2. So I am not using it here now.
