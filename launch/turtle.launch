@@ -1,0 +1,24 @@
+<launch>
+    <node pkg="turtlesim" exec="turtlesim_node" />
+
+    <executable
+        cmd="/kill turtlesim/srv/Kill 'name: turtle1'"
+        cwd="/home"
+        launch-prefix="ros2 service call"
+        output="screen"
+    />
+
+    <executable
+        cmd="/spawn turtlesim/srv/Spawn '{x: 1.0, y: 1.0, theta: 0, name: 'turtle'}'"
+        cwd="/home"
+        launch-prefix="ros2 service call"
+        output="screen"
+    />
+
+    <node pkg="rosp_layered_exercise" exec="rosp_layered_exercise"
+          name="layered_exercise_node" output="screen">
+        <remap from="/cmd_vel" to="/turtle/cmd_vel"/>
+        <remap from="/pose" to="/turtle/pose"/>
+        <param from="$(find-pkg-share rosp_layered_exercise)/config/turtlesim_control_params.yaml"/>
+    </node>
+</launch>

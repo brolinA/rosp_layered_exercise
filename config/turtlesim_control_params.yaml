@@ -1,0 +1,24 @@
+layered_exercise_node:
+  ros__parameters:
+    proportional_gain:
+      linear: 2.0
+      angular: 5.0
+
+    no_of_goal: 16
+    goal1: [ 1.0, 8.0, 0.0]
+    goal2: [ 3.0, 8.0, 0.0]
+    goal3: [ 3.0, 5.0, 0.0]
+    goal4: [ 1.0, 5.0, 0.0]
+    goal5: [ 3.0, 3.0, 0.0]
+    goal6: [ 5.0, 3.0, 0.0]
+    goal7: [ 5.0, 8.0, 0.0]
+    goal8: [ 7.0, 8.0, 0.0]
+    goal9: [ 7.0, 3.0, 0.0]
+    goal10: [ 5.0, 3.0, 0.0]
+    goal11: [ 9.0, 8.0, 0.0]
+    goal12: [ 7.0, 8.0, 0.0]
+    goal13: [7.0, 6.0, 0.0]
+    goal14: [9.0, 6.0, 0.0]
+    goal15: [9.0, 4.0, 0.0]
+    goal16: [7.0, 4.0, 0.0]
+    

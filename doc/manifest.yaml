@@ -1,0 +1,19 @@
+actions: []
+authors: ''
+brief: ''
+bugtracker: ''
+depends:
+- geometry_msgs
+- turtlesim
+- rclcpp
+- ament_lint_common
+- ament_lint_auto
+- ament_cmake
+description: The test package ported to ROS2
+license: Closed
+maintainers: brolin <layered@todo.todo>
+msgs: []
+package_type: package
+repo_url: ''
+srvs: []
+url: ''
